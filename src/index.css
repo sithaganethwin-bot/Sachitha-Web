@@ -1,0 +1,284 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-accent: #38bdf8;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Glassmorphism helpers */
+.glass-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(219, 234, 254, 0.8);
+}
+
+.glass-dark {
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(30, 58, 138, 0.35);
+}
+
+/* Radial background glow utilities */
+.glow-bg-light {
+  background-image: radial-gradient(circle at 50% 0%, rgba(219, 234, 254, 0.6) 0%, rgba(239, 246, 255, 0.2) 60%, transparent 100%);
+}
+
+.glow-bg-dark {
+  background-image: radial-gradient(circle at 50% -10%, rgba(37, 99, 235, 0.25) 0%, rgba(6, 182, 212, 0.08) 45%, transparent 80%);
+}
+
+/* Custom modern scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.7);
+}
+
+/* ============================================================
+   LUMINOUS BUTTON & ELEMENT BORDER GLOW SYSTEM
+   Theme-aware lighting for every button and interactive control
+   ============================================================ */
+
+/* All standard buttons glow with interactive theme-calibrated luminescence */
+button {
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light theme button hover glow (Royal Blue & Cyan) */
+html:not(.dark) button:hover,
+body:not(.dark) button:hover {
+  box-shadow: 
+    0 0 0 1px rgba(37, 99, 235, 0.45),
+    0 0 16px 2px rgba(37, 99, 235, 0.22),
+    0 4px 12px rgba(37, 99, 235, 0.12);
+}
+
+/* Dark theme button hover glow (Electric Sky & Cyan Neon) */
+.dark button:hover {
+  box-shadow: 
+    0 0 0 1px rgba(56, 189, 248, 0.7),
+    0 0 18px 3px rgba(56, 189, 248, 0.38),
+    0 0 30px rgba(37, 99, 235, 0.25);
+}
+
+/* Specific intense glowing button utility */
+.btn-glow {
+  border-width: 1px;
+  border-style: solid;
+  transition: all 0.25s ease-out;
+}
+
+html:not(.dark) .btn-glow {
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.15);
+}
+
+html:not(.dark) .btn-glow:hover {
+  border-color: rgba(37, 99, 235, 0.85);
+  box-shadow: 
+    0 0 0 1px rgba(37, 99, 235, 0.5),
+    0 0 20px 4px rgba(37, 99, 235, 0.3),
+    0 6px 20px rgba(37, 99, 235, 0.2);
+}
+
+.dark .btn-glow {
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+
+.dark .btn-glow:hover {
+  border-color: rgba(56, 189, 248, 0.95);
+  box-shadow: 
+    0 0 0 1px rgba(56, 189, 248, 0.8),
+    0 0 22px 5px rgba(56, 189, 248, 0.45),
+    0 0 35px rgba(37, 99, 235, 0.35);
+}
+
+/* ============================================================
+   EDITORIAL LUXE & TACTILE MOTION SYSTEM ("POUR / PLAY")
+   ============================================================ */
+
+/* Paper Grain Texture Overlay */
+.editorial-paper-grain {
+  display: none !important;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Lenis smooth scrolling base rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Double-Bezel Nested Architecture */
+.double-bezel-shell {
+  background: rgba(241, 245, 249, 0.85);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 2rem;
+  padding: 0.5rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .double-bezel-shell {
+  background: rgba(24, 24, 27, 0.6);
+  border: 1px solid rgba(39, 39, 42, 0.8);
+}
+
+.double-bezel-core {
+  background: #FFFFFF;
+  border-radius: calc(2rem - 0.5rem);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.dark .double-bezel-core {
+  background: #101012;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Magnetic Pill Button */
+.btn-magnetic-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  background: #161618;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px -2px rgba(22, 22, 24, 0.15);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.dark .btn-magnetic-pill {
+  background: #F7F5F0;
+  color: #101012;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn-magnetic-pill:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px -4px rgba(67, 56, 202, 0.25);
+}
+
+.btn-magnetic-pill:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-magnetic-pill .icon-bubble {
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.12);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark .btn-magnetic-pill .icon-bubble {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.btn-magnetic-pill:hover .icon-bubble {
+  transform: translateX(2px) translateY(-1px) scale(1.08);
+}
+
+/* ============================================================
+   SMOOTH THEME TRANSITION (Dark / Light Theme Switch)
+   ============================================================ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+::view-transition-old(root) {
+  animation-name: theme-fade-out;
+}
+::view-transition-new(root) {
+  animation-name: theme-fade-in;
+}
+
+@keyframes theme-fade-out {
+  from { opacity: 1; filter: brightness(1); }
+  to { opacity: 0; filter: brightness(0.9); }
+}
+
+@keyframes theme-fade-in {
+  from { opacity: 0; filter: brightness(1.1); }
+  to { opacity: 1; filter: brightness(1); }
+}
+
+/* Fallback smooth transition for elements when toggled without View Transitions */
+.theme-transitioning,
+.theme-transitioning body,
+.theme-transitioning div,
+.theme-transitioning section,
+.theme-transitioning nav,
+.theme-transitioning header,
+.theme-transitioning footer,
+.theme-transitioning button,
+.theme-transitioning a,
+.theme-transitioning span,
+.theme-transitioning p,
+.theme-transitioning h1,
+.theme-transitioning h2,
+.theme-transitioning h3 {
+  transition: background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              color 0.3s ease,
+              box-shadow 0.4s ease !important;
+}
+
+
+
